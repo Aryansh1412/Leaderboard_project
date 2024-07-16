@@ -14,16 +14,16 @@ interface LeaderboardState {
 
 const initialState: LeaderboardState = {
   players: [
-    { name: 'John Doe', score: '10:00:000', timeInMillis: 600000 },
-    { name: 'Jane Smith', score: '09:50:000', timeInMillis: 590000 },
-    { name: 'Bob Johnson', score: '09:00:000', timeInMillis: 540000 },
-    { name: 'Alice Williams', score: '08:48:000', timeInMillis: 528000 },
-    { name: 'Tom Davis', score: '08:40:000', timeInMillis: 520000 },
-    { name: 'Sarah Lee', score: '08:24:000', timeInMillis: 504000 },
-    { name: 'Michael Chen', score: '08:12:000', timeInMillis: 492000 },
-    { name: 'Emily Nguyen', score: '08:00:000', timeInMillis: 480000 },
-    { name: 'David Kim', score: '07:48:000', timeInMillis: 468000 },
-    { name: 'Jessica Patel', score: '07:36:000', timeInMillis: 456000 },
+    { name: 'Anjum', score: '10:56:23', timeInMillis: 600000 },
+    { name: 'Pragati Azad', score: '00:56:23', timeInMillis: 590000 },
+    { name: 'Pragati Azad', score: '00:56:23', timeInMillis: 540000 },
+    { name: 'Hannibal Hector', score: '00:56:23', timeInMillis: 528000 },
+    { name: 'Razzi', score: '00:56:23', timeInMillis: 520000 },
+    { name: 'McRamble', score: '00:56:23', timeInMillis: 504000 },
+    { name: 'Razzi', score: '00:56:23', timeInMillis: 492000 },
+    { name: 'McRamble', score: '00:56:23', timeInMillis: 480000 },
+    { name: 'Muhammed Anjum Kunnummao', score: '00:56:23', timeInMillis: 468000 },
+    { name: 'Sahil Arora', score: '00:56:23', timeInMillis: 456000 },
   ],
 };
 
