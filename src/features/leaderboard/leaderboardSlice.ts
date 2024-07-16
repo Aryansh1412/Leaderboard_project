@@ -14,7 +14,7 @@ interface LeaderboardState {
 
 const initialState: LeaderboardState = {
   players: [
-    { name: 'Anjum', score: '10:56:23', timeInMillis: 600000 },
+    { name: 'Anjum', score: '0:56:23', timeInMillis: 600000 },
     { name: 'Pragati Azad', score: '00:56:23', timeInMillis: 590000 },
     { name: 'Pragati Azad', score: '00:56:23', timeInMillis: 540000 },
     { name: 'Hannibal Hector', score: '00:56:23', timeInMillis: 528000 },
