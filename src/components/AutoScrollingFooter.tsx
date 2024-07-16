@@ -6,7 +6,7 @@ import image2 from "../assets/Daily_View.png"
 import image3 from "../assets/BANER-SHANNH 1.png"
 import image4 from "../assets/image 65 (1).png"
 import image5 from "../assets/cricket.jpg"
-import ImagePopup from './ImagePopup';
+
 
 
 const AutoScrollingFooter: React.FC = () => {
