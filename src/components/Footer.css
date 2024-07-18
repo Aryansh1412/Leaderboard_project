@@ -1,0 +1,37 @@
+.footer {
+  padding: 20px 0;
+  /* position: relative; */
+  overflow: hidden;
+  width: 80%;
+}
+
+.image-container {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+.image-track {
+  display: inline-block;
+  animation: scroll infinite 7s alternate;
+}
+
+.image-track img {
+  height: 400px;
+  width: 500px;
+
+  margin-right: 20px;
+  transition: all;
+}
+.image-track:hover {
+  animation-play-state: paused;
+  cursor: pointer;
+}
+
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}

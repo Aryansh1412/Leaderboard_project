@@ -1,8 +1,7 @@
-// src/app/store.ts
-import { configureStore } from '@reduxjs/toolkit';
-import leaderboardReducer from '../features/leaderboard/leaderboardSlice';
+import { configureStore } from "@reduxjs/toolkit";
+import { leaderboardReducer } from "../reducers";
 
-export const store = configureStore({
+const store = configureStore({
   reducer: {
     leaderboard: leaderboardReducer,
   },
@@ -10,3 +9,5 @@ export const store = configureStore({
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
+
+export default store;

@@ -1,0 +1,37 @@
+.scrolling {
+  padding: 5px 0;
+  position: relative;
+  overflow: hidden;
+  background-color: #000;
+}
+
+.scrolling-text-container {
+  width: 100vw;
+  color: wheat;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.scrolling-text-track {
+  display: inline-block;
+  animation: scroll-text 13s linear infinite;
+}
+.scrolling-text-track:hover {
+  animation-play-state: paused;
+  cursor: pointer;
+}
+
+@keyframes scroll-text {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.scrolling-text-track span {
+  margin-right: 80vw;
+  font-size: 24px;
+}

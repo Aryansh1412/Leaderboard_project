@@ -1,121 +1,44 @@
 // src/App.tsx
-import React, { useState, useRef, useEffect } from 'react';
-import './App.css';
-import Modal from 'react-modal';
-import { useSelector, useDispatch } from 'react-redux';
-import { RootState, AppDispatch } from './app/store';
-import { addPlayer, deletePlayer, resetNewFlag } from './features/leaderboard/leaderboardSlice';
-import AutoScrollingFooter from './components/AutoScrollingFooter';
-
-
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { setLeaderboard } from "./reducers";
+import Leaderboard from "./components/Leaderboard";
+import AddScorePopup from "../src/components/AddScorePopup";
+import { AppDispatch } from "./app/store";
+import "./App.css";
+import Footer from "./components/Footer";
+import ScrollingText from "./components/ScrollingText";
 const App: React.FC = () => {
-  const players = useSelector((state: RootState) => state.leaderboard.players);
-  const dispatch = useDispatch<AppDispatch>();
-
-  const [name, setName] = useState<string>('');
-  const [score, setScore] = useState<string>('');
-  const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
-  const newEntryRef = useRef<HTMLTableRowElement>(null);
-
-  const openModal = () => {
-    setModalIsOpen(true);
-  };
-
-  const closeModal = () => {
-    setModalIsOpen(false);
-  };
-
-  const handleAddScore = () => {
-    if (name && score) {
-      const timeParts = score.split(':');
-      if (timeParts.length === 3) {
-        const timeInMillis = Number(timeParts[0]) * 60000 + Number(timeParts[1]) * 1000 + Number(timeParts[2]);
-        const newPlayer = { name, score, timeInMillis, isNew: true };
-        dispatch(addPlayer(newPlayer));
-        setName('');
-        setScore('');
-        closeModal();
-
-        setTimeout(() => {
-          if (newEntryRef.current) {
-            newEntryRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          }
-        }, 100);
-      } else {
-        alert('Score format should be MM:SS:MMM');
-      }
-    } else {
-      alert('Please enter both name and score');
-    }
-  };
-
-  const handleDeletePlayer = (name: string) => {
-    dispatch(deletePlayer(name));
-  };
+  const dispatch: AppDispatch = useDispatch();
+  const [showPopup, setShowPopup] = useState(false);
 
   useEffect(() => {
-    if (newEntryRef.current) {
-      newEntryRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-  }, [players]);
+    const leaderboard = [
+      { name: "Salil", time: "1:30.075", rank: 1 },
+      { name: "Ankit", time: "1:30.441", rank: 2 },
+      { name: "Ankit", time: "1:30.753", rank: 3 },
+      { name: "Ankit", time: "1:30.789", rank: 4 },
+      { name: "Ankit", time: "1:31.080", rank: 5 },
+      { name: "Ankit", time: "1:33.730", rank: 6 },
+      { name: "Don", time: "1:34.201", rank: 7 },
+      { name: "Sandesh", time: "1:34.437", rank: 8 },
+      { name: "Vandit", time: "1:34.872", rank: 9 },
+      { name: "Kevin Anderson", time: "1:35.128", rank: 10 },
+    ];
+    dispatch(setLeaderboard(leaderboard));
+  }, [dispatch]);
 
   return (
     <div className="App">
-      <h1>Leaderboard</h1>
       <div className="leaderboard-container">
-        <table>
-          <thead>
-            <tr>
-              <th>Rank</th>
-              <th>Player</th>
-              <th>Score</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {players.map((player, index) => (
-              <tr
-                key={index}
-                className={player.isNew ? 'new-entry' : ''}
-                ref={player.isNew ? newEntryRef : null}
-              >
-                <td>{index + 1}</td>
-                <td>{player.name}</td>
-                <td>{player.score}</td>
-                <td>
-                  <button className="delete" onClick={() => handleDeletePlayer(player.name)}>Delete</button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <Leaderboard />
       </div>
-      <button onClick={openModal}>Add Score</button>
-      <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        contentLabel="Add Score Modal"
-        className="Modal"
-        overlayClassName="Overlay"
-      >
-        <h2>Add Score</h2>
-        <input
-          type="text"
-          placeholder="Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Score (MM:SS:MMM)"
-          value={score}
-          onChange={(e) => setScore(e.target.value)}
-        />
-        <button onClick={handleAddScore}>Submit</button>
-        <button onClick={closeModal}>Close</button>
-   
-      </Modal>
-      <AutoScrollingFooter/>
+      <button onClick={() => setShowPopup(true)} className="add-score-button">
+        Add Score
+      </button>
+      <AddScorePopup show={showPopup} onClose={() => setShowPopup(false)} />
+      <Footer />
+      <ScrollingText />
     </div>
   );
 };
